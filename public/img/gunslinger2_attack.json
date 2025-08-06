@@ -1,0 +1,639 @@
+{
+  "frames": {
+    "gunslinger2_attack/11.0000": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 88,
+        "h": 135
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 33,
+        "w": 88,
+        "h": 135
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0025": {
+      "frame": {
+        "x": 141,
+        "y": 2,
+        "w": 88,
+        "h": 131
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 56,
+        "y": 37,
+        "w": 88,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0020": {
+      "frame": {
+        "x": 276,
+        "y": 2,
+        "w": 121,
+        "h": 90
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 78,
+        "w": 121,
+        "h": 90
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0013": {
+      "frame": {
+        "x": 401,
+        "y": 2,
+        "w": 91,
+        "h": 135
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 33,
+        "w": 91,
+        "h": 135
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0019": {
+      "frame": {
+        "x": 540,
+        "y": 2,
+        "w": 124,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 75,
+        "w": 124,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0024": {
+      "frame": {
+        "x": 668,
+        "y": 2,
+        "w": 94,
+        "h": 123
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 57,
+        "y": 45,
+        "w": 94,
+        "h": 123
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0021": {
+      "frame": {
+        "x": 795,
+        "y": 2,
+        "w": 115,
+        "h": 97
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 71,
+        "w": 115,
+        "h": 97
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0002": {
+      "frame": {
+        "x": 914,
+        "y": 2,
+        "w": 98,
+        "h": 137
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 31,
+        "w": 98,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0014": {
+      "frame": {
+        "x": 1055,
+        "y": 2,
+        "w": 99,
+        "h": 130
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 38,
+        "w": 99,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0018": {
+      "frame": {
+        "x": 1189,
+        "y": 2,
+        "w": 130,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 68,
+        "w": 130,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0001": {
+      "frame": {
+        "x": 1323,
+        "y": 2,
+        "w": 101,
+        "h": 135
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 33,
+        "w": 101,
+        "h": 135
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0012": {
+      "frame": {
+        "x": 1462,
+        "y": 2,
+        "w": 102,
+        "h": 136
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 32,
+        "w": 102,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0023": {
+      "frame": {
+        "x": 1602,
+        "y": 2,
+        "w": 103,
+        "h": 115
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 56,
+        "y": 53,
+        "w": 103,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0022": {
+      "frame": {
+        "x": 1721,
+        "y": 2,
+        "w": 110,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 62,
+        "w": 110,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0003": {
+      "frame": {
+        "x": 1835,
+        "y": 2,
+        "w": 107,
+        "h": 136
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 32,
+        "w": 107,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0015": {
+      "frame": {
+        "x": 2,
+        "y": 94,
+        "w": 107,
+        "h": 122
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 46,
+        "w": 107,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0017": {
+      "frame": {
+        "x": 128,
+        "y": 94,
+        "w": 125,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 59,
+        "w": 125,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0011": {
+      "frame": {
+        "x": 257,
+        "y": 96,
+        "w": 112,
+        "h": 136
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31,
+        "y": 32,
+        "w": 112,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0016": {
+      "frame": {
+        "x": 397,
+        "y": 97,
+        "w": 118,
+        "h": 115
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 52,
+        "y": 53,
+        "w": 118,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0010": {
+      "frame": {
+        "x": 519,
+        "y": 99,
+        "w": 120,
+        "h": 137
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 23,
+        "y": 31,
+        "w": 120,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0004": {
+      "frame": {
+        "x": 660,
+        "y": 103,
+        "w": 121,
+        "h": 134
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 34,
+        "w": 121,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0005": {
+      "frame": {
+        "x": 798,
+        "y": 104,
+        "w": 124,
+        "h": 136
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 34,
+        "w": 124,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0009": {
+      "frame": {
+        "x": 938,
+        "y": 105,
+        "w": 125,
+        "h": 137
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 31,
+        "w": 125,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0006": {
+      "frame": {
+        "x": 1079,
+        "y": 106,
+        "w": 127,
+        "h": 139
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 33,
+        "w": 127,
+        "h": 139
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0007": {
+      "frame": {
+        "x": 1222,
+        "y": 107,
+        "w": 127,
+        "h": 138
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 32,
+        "w": 127,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger2_attack/11.0008": {
+      "frame": {
+        "x": 1364,
+        "y": 108,
+        "w": 127,
+        "h": 137
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 31,
+        "w": 127,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://github.com/odrick/free-tex-packer-core",
+    "version": "0.3.4",
+    "image": "gunslinger2_attack.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2048,
+      "h": 256
+    },
+    "scale": 1
+  }
+}

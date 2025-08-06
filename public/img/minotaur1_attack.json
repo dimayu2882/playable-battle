@@ -1,0 +1,567 @@
+{
+  "frames": {
+    "minotaur1_attack/COMPS.0034": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 77,
+        "h": 129
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 49,
+        "y": 36,
+        "w": 77,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0032": {
+      "frame": {
+        "x": 2,
+        "y": 135,
+        "w": 74,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 30,
+        "w": 74,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0028": {
+      "frame": {
+        "x": 2,
+        "y": 267,
+        "w": 77,
+        "h": 127
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 20,
+        "w": 77,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0030": {
+      "frame": {
+        "x": 80,
+        "y": 135,
+        "w": 77,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 42,
+        "y": 24,
+        "w": 77,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0036": {
+      "frame": {
+        "x": 83,
+        "y": 2,
+        "w": 92,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 40,
+        "y": 42,
+        "w": 92,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0040": {
+      "frame": {
+        "x": 2,
+        "y": 398,
+        "w": 118,
+        "h": 85
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 57,
+        "w": 118,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0042": {
+      "frame": {
+        "x": 83,
+        "y": 264,
+        "w": 117,
+        "h": 85
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 58,
+        "w": 117,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0026": {
+      "frame": {
+        "x": 161,
+        "y": 128,
+        "w": 76,
+        "h": 113
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 16,
+        "w": 76,
+        "h": 113
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0012": {
+      "frame": {
+        "x": 179,
+        "y": 2,
+        "w": 80,
+        "h": 111
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 46,
+        "y": 69,
+        "w": 80,
+        "h": 111
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0014": {
+      "frame": {
+        "x": 2,
+        "y": 520,
+        "w": 80,
+        "h": 111
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 69,
+        "w": 80,
+        "h": 111
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0000": {
+      "frame": {
+        "x": 2,
+        "y": 635,
+        "w": 110,
+        "h": 85
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 39,
+        "y": 58,
+        "w": 110,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0043": {
+      "frame": {
+        "x": 86,
+        "y": 520,
+        "w": 110,
+        "h": 85
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 39,
+        "y": 58,
+        "w": 110,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0008": {
+      "frame": {
+        "x": 91,
+        "y": 385,
+        "w": 84,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 66,
+        "w": 84,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0010": {
+      "frame": {
+        "x": 175,
+        "y": 245,
+        "w": 81,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 69,
+        "w": 81,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0016": {
+      "frame": {
+        "x": 241,
+        "y": 117,
+        "w": 81,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 71,
+        "w": 81,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0018": {
+      "frame": {
+        "x": 263,
+        "y": 2,
+        "w": 81,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 44,
+        "y": 71,
+        "w": 81,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0038": {
+      "frame": {
+        "x": 2,
+        "y": 749,
+        "w": 103,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 47,
+        "w": 103,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0024": {
+      "frame": {
+        "x": 91,
+        "y": 634,
+        "w": 97,
+        "h": 105
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 44,
+        "y": 50,
+        "w": 97,
+        "h": 105
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0020": {
+      "frame": {
+        "x": 175,
+        "y": 498,
+        "w": 82,
+        "h": 104
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 43,
+        "y": 71,
+        "w": 82,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0006": {
+      "frame": {
+        "x": 192,
+        "y": 358,
+        "w": 89,
+        "h": 103
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 49,
+        "y": 63,
+        "w": 89,
+        "h": 103
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0022": {
+      "frame": {
+        "x": 261,
+        "y": 230,
+        "w": 83,
+        "h": 103
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 43,
+        "y": 67,
+        "w": 83,
+        "h": 103
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0002": {
+      "frame": {
+        "x": 326,
+        "y": 113,
+        "w": 100,
+        "h": 89
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 45,
+        "y": 59,
+        "w": 100,
+        "h": 89
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_attack/COMPS.0004": {
+      "frame": {
+        "x": 348,
+        "y": 2,
+        "w": 91,
+        "h": 97
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 49,
+        "y": 61,
+        "w": 91,
+        "h": 97
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://github.com/odrick/free-tex-packer-core",
+    "version": "0.3.4",
+    "image": "minotaur1_attack.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 1024
+    },
+    "scale": 1
+  }
+}

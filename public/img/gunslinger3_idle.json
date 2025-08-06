@@ -1,0 +1,495 @@
+{
+  "frames": {
+    "gunslinger3_idle/11.0000": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 104,
+        "h": 158
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 9,
+        "w": 104,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0002": {
+      "frame": {
+        "x": 164,
+        "y": 2,
+        "w": 104,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 7,
+        "w": 104,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0004": {
+      "frame": {
+        "x": 325,
+        "y": 2,
+        "w": 104,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 5,
+        "w": 104,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0032": {
+      "frame": {
+        "x": 486,
+        "y": 2,
+        "w": 104,
+        "h": 160
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 16,
+        "w": 104,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0034": {
+      "frame": {
+        "x": 650,
+        "y": 2,
+        "w": 104,
+        "h": 161
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 14,
+        "w": 104,
+        "h": 161
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0036": {
+      "frame": {
+        "x": 815,
+        "y": 2,
+        "w": 104,
+        "h": 160
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 13,
+        "w": 104,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0038": {
+      "frame": {
+        "x": 979,
+        "y": 2,
+        "w": 104,
+        "h": 158
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 12,
+        "w": 104,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0006": {
+      "frame": {
+        "x": 1141,
+        "y": 2,
+        "w": 105,
+        "h": 158
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 3,
+        "w": 105,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0028": {
+      "frame": {
+        "x": 1303,
+        "y": 2,
+        "w": 105,
+        "h": 159
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 17,
+        "w": 105,
+        "h": 159
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0030": {
+      "frame": {
+        "x": 1466,
+        "y": 2,
+        "w": 105,
+        "h": 160
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 17,
+        "w": 105,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0008": {
+      "frame": {
+        "x": 1630,
+        "y": 2,
+        "w": 106,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 3,
+        "w": 106,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0024": {
+      "frame": {
+        "x": 1791,
+        "y": 2,
+        "w": 106,
+        "h": 158
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 16,
+        "w": 106,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0026": {
+      "frame": {
+        "x": 2,
+        "y": 110,
+        "w": 106,
+        "h": 158
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 17,
+        "w": 106,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0010": {
+      "frame": {
+        "x": 164,
+        "y": 110,
+        "w": 107,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 3,
+        "w": 107,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0012": {
+      "frame": {
+        "x": 325,
+        "y": 110,
+        "w": 107,
+        "h": 156
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 4,
+        "w": 107,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0014": {
+      "frame": {
+        "x": 485,
+        "y": 110,
+        "w": 107,
+        "h": 155
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 6,
+        "w": 107,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0016": {
+      "frame": {
+        "x": 644,
+        "y": 110,
+        "w": 107,
+        "h": 155
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 9,
+        "w": 107,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0018": {
+      "frame": {
+        "x": 803,
+        "y": 110,
+        "w": 107,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 10,
+        "w": 107,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0020": {
+      "frame": {
+        "x": 964,
+        "y": 110,
+        "w": 107,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 13,
+        "w": 107,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "gunslinger3_idle/11.0022": {
+      "frame": {
+        "x": 1125,
+        "y": 111,
+        "w": 107,
+        "h": 157
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 15,
+        "w": 107,
+        "h": 157
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://github.com/odrick/free-tex-packer-core",
+    "version": "0.3.4",
+    "image": "gunslinger3_idle.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2048,
+      "h": 256
+    },
+    "scale": 1
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "frames": {
+    "minotaur1_move/COMPS.0018": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 96,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 44,
+        "w": 96,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0019": {
+      "frame": {
+        "x": 2,
+        "y": 106,
+        "w": 94,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 56,
+        "y": 45,
+        "w": 94,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0007": {
+      "frame": {
+        "x": 2,
+        "y": 210,
+        "w": 96,
+        "h": 99
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 46,
+        "w": 96,
+        "h": 99
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0001": {
+      "frame": {
+        "x": 100,
+        "y": 106,
+        "w": 95,
+        "h": 99
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 44,
+        "w": 95,
+        "h": 99
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0000": {
+      "frame": {
+        "x": 102,
+        "y": 2,
+        "w": 93,
+        "h": 99
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 56,
+        "y": 46,
+        "w": 93,
+        "h": 99
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0016": {
+      "frame": {
+        "x": 2,
+        "y": 313,
+        "w": 98,
+        "h": 96
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 43,
+        "w": 98,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0015": {
+      "frame": {
+        "x": 2,
+        "y": 415,
+        "w": 98,
+        "h": 95
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 53,
+        "y": 42,
+        "w": 98,
+        "h": 95
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0003": {
+      "frame": {
+        "x": 2,
+        "y": 517,
+        "w": 98,
+        "h": 92
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 40,
+        "w": 98,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0006": {
+      "frame": {
+        "x": 2,
+        "y": 619,
+        "w": 96,
+        "h": 97
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 45,
+        "w": 96,
+        "h": 97
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0009": {
+      "frame": {
+        "x": 98,
+        "y": 517,
+        "w": 93,
+        "h": 97
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 50,
+        "w": 93,
+        "h": 97
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0004": {
+      "frame": {
+        "x": 101,
+        "y": 415,
+        "w": 97,
+        "h": 92
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 41,
+        "w": 97,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0010": {
+      "frame": {
+        "x": 102,
+        "y": 209,
+        "w": 93,
+        "h": 96
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 52,
+        "w": 93,
+        "h": 96
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0013": {
+      "frame": {
+        "x": 102,
+        "y": 309,
+        "w": 96,
+        "h": 91
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 54,
+        "y": 43,
+        "w": 96,
+        "h": 91
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "minotaur1_move/COMPS.0012": {
+      "frame": {
+        "x": 2,
+        "y": 720,
+        "w": 95,
+        "h": 94
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 55,
+        "y": 46,
+        "w": 95,
+        "h": 94
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://github.com/odrick/free-tex-packer-core",
+    "version": "0.3.4",
+    "image": "minotaur1_move.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 256,
+      "h": 1024
+    },
+    "scale": 1
+  }
+}

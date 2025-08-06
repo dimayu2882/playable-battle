@@ -1,0 +1,519 @@
+{
+  "frames": {
+    "skeleton_attack/COMPS.0004": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 52,
+        "h": 83
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 36,
+        "y": 10,
+        "w": 52,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0006": {
+      "frame": {
+        "x": 2,
+        "y": 89,
+        "w": 51,
+        "h": 83
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 10,
+        "w": 51,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0003": {
+      "frame": {
+        "x": 2,
+        "y": 176,
+        "w": 58,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 11,
+        "w": 58,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0013": {
+      "frame": {
+        "x": 57,
+        "y": 89,
+        "w": 79,
+        "h": 54
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 34,
+        "w": 79,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0007": {
+      "frame": {
+        "x": 58,
+        "y": 2,
+        "w": 52,
+        "h": 78
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 11,
+        "w": 52,
+        "h": 78
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0022": {
+      "frame": {
+        "x": 114,
+        "y": 2,
+        "w": 77,
+        "h": 63
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 28,
+        "y": 25,
+        "w": 77,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0010": {
+      "frame": {
+        "x": 2,
+        "y": 260,
+        "w": 53,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 35,
+        "y": 13,
+        "w": 53,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0009": {
+      "frame": {
+        "x": 2,
+        "y": 339,
+        "w": 51,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 41,
+        "y": 13,
+        "w": 51,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0000": {
+      "frame": {
+        "x": 2,
+        "y": 418,
+        "w": 74,
+        "h": 71
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 25,
+        "y": 17,
+        "w": 74,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0001": {
+      "frame": {
+        "x": 57,
+        "y": 339,
+        "w": 70,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 27,
+        "y": 16,
+        "w": 70,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0029": {
+      "frame": {
+        "x": 59,
+        "y": 260,
+        "w": 67,
+        "h": 71
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 17,
+        "w": 67,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0012": {
+      "frame": {
+        "x": 130,
+        "y": 260,
+        "w": 70,
+        "h": 63
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 25,
+        "w": 70,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0028": {
+      "frame": {
+        "x": 64,
+        "y": 172,
+        "w": 60,
+        "h": 69
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 26,
+        "y": 19,
+        "w": 60,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0025": {
+      "frame": {
+        "x": 128,
+        "y": 172,
+        "w": 54,
+        "h": 69
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 28,
+        "w": 54,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0024": {
+      "frame": {
+        "x": 186,
+        "y": 172,
+        "w": 56,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 28,
+        "y": 27,
+        "w": 56,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0021": {
+      "frame": {
+        "x": 115,
+        "y": 83,
+        "w": 67,
+        "h": 63
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 25,
+        "w": 67,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0027": {
+      "frame": {
+        "x": 181,
+        "y": 2,
+        "w": 57,
+        "h": 67
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 27,
+        "y": 23,
+        "w": 57,
+        "h": 67
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0019": {
+      "frame": {
+        "x": 182,
+        "y": 73,
+        "w": 56,
+        "h": 67
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 28,
+        "y": 21,
+        "w": 56,
+        "h": 67
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0018": {
+      "frame": {
+        "x": 242,
+        "y": 2,
+        "w": 50,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 29,
+        "y": 22,
+        "w": 50,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0015": {
+      "frame": {
+        "x": 242,
+        "y": 72,
+        "w": 54,
+        "h": 61
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 36,
+        "w": 54,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "skeleton_attack/COMPS.0016": {
+      "frame": {
+        "x": 296,
+        "y": 2,
+        "w": 44,
+        "h": 61
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 37,
+        "y": 33,
+        "w": 44,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://github.com/odrick/free-tex-packer-core",
+    "version": "0.3.4",
+    "image": "skeleton_attack.webp",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 1
+  }
+}
