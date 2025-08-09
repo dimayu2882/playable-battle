@@ -6,6 +6,10 @@ import { labels } from '../common/enums.js';
 import {
 	createSoundButton,
 	createSceneFinish,
+	createFinger,
+	createBackground,
+	createBtnTop, createLogo,
+	createTextButton, createScene
 } from '../ui/index.js';
 import { eventBus } from '../utils/EventBus.js';
 import { GameManager } from './GameManager.js';
@@ -45,7 +49,12 @@ export class MainGame {
 
 		app.stage.addChild(this.gameContainer);
 		this.gameContainer.addChild(
+			createBackground(app),
+			createScene(app),
 			createSoundButton(app),
+			createBtnTop(app),
+			createLogo(app),
+			createTextButton(app),
 			createSceneFinish(app),
 		);
 

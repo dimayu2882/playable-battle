@@ -5,7 +5,7 @@ import { elementType, labels } from '../common/enums.js';
 export default function createFinger() {
 	const finger = new PixiElement({
 		type: elementType.SPRITE,
-		texture: allTextureKeys.finger,
+		texture: allTextureKeys.hand,
 		label: labels.finger,
 		width: 120,
 		height: 120,

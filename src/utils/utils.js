@@ -79,7 +79,14 @@ export class UIFactory {
 
 	static createAnimatedSprite({ texture, animationSpeed }) {
 		const sheet = Assets.cache.get(texture);
-		const textures = Object.values(sheet.textures);
+		const textures = Object.keys(sheet.textures)
+			.sort((a, b) => {
+				const numA = parseFloat(a.match(/(\d+\.\d+)/)?.[0] || 0);
+				const numB = parseFloat(b.match(/(\d+\.\d+)/)?.[0] || 0);
+				return numA - numB;
+			})
+			.map(key => sheet.textures[key]);
+		
 		const animatedSprite = new AnimatedSprite(textures);
 
 		animatedSprite.animationSpeed = animationSpeed;

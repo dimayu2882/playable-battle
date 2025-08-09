@@ -19,7 +19,7 @@ export default function createSoundButton(app) {
 
 	const soundButton = new PixiElement({
 		type: elementType.SPRITE,
-		texture: allTextureKeys.sound,
+		texture: allTextureKeys.soundOn,
 	});
 	const soundButtonElement = soundButton.getElement();
 	soundButtonElement.position.set(10, app.renderer.height - soundButtonElement.height - 10);
@@ -35,7 +35,7 @@ export default function createSoundButton(app) {
 			soundButtonElement.y + soundButtonElement.height / 2,
 		],
 		half: length / 2,
-		setStrokeStyle: { width: 4, color: 0xfbb500, cap: 'round' },
+		setStrokeStyle: { width: 4, color: 0xffffff, cap: 'round' },
 		moveTo: [-half, -half],
 		lineTo: [half, half],
 		label: labels.muteSlash,
