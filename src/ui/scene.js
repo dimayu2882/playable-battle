@@ -92,65 +92,76 @@ export default function createScene(app) {
 			texture: allTextureKeys.minotaur1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroOne
 		},
 		{
 			texture: allTextureKeys.minotaur1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroOne
 		},
 		{
 			texture: allTextureKeys.minotaur1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroOne
 		},
 		{
 			texture: allTextureKeys.minotaur1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroOne
 		},
 		{
 			texture: allTextureKeys.gunslinger1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroTwo
 		},
 		{
 			texture: allTextureKeys.gunslinger1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroTwo
 		},
 		{
 			texture: allTextureKeys.gunslinger1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroTwo
 		},
 		{
 			texture: allTextureKeys.gunslinger1Idle,
 			isHero: true,
 			isKing: false,
-			hp: 1
+			hp: 1,
+			heroType: labels.heroTwo
 		},
 	];
 	
 	let heroes = [];
 	
-	heroes = heroesConfig.map(config => {
+	heroes = heroesConfig.map((config, index) => {
 		return new CharacterElement(
 			app,
 			config.texture,
 			config.isHero,
 			config.isKing,
-			config.hp
+			config.hp,
+			config.heroType,
+			index
 		).getElement();
 	});
 
 	sceneElement.addChild(sceneBackgroundElement, titleEnemies, titleUser, ...enemies, ...heroes);
+	sceneElement.sortChildren();
 	
 	setPosition();
 	

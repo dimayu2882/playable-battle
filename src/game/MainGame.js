@@ -9,7 +9,7 @@ import {
 	createFinger,
 	createBackground,
 	createBtnTop, createLogo,
-	createTextButton, createScene
+	createTextButton, createScene, createButtonBattle
 } from '../ui/index.js';
 import { eventBus } from '../utils/EventBus.js';
 import { GameManager } from './GameManager.js';
@@ -56,6 +56,7 @@ export class MainGame {
 			createLogo(app),
 			createTextButton(app),
 			createSceneFinish(app),
+			createButtonBattle(app)
 		);
 
 		this.gameManager = new GameManager(app);

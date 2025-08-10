@@ -20,13 +20,100 @@ export class GameManager {
 		
 		// Подписка на события EventBus
 		eventBus.on('toggleSound', this.toggleSound);
+		eventBus.on('showShadow', this.showShadow);
 		
 		// Добавление обработчиков
 		this.soundButton.on('pointerdown', () => eventBus.emit('toggleSound'));
 		
+		this.heros.forEach(hero => {
+			hero
+				.on('pointerdown', this.onDragStart)
+				.on('pointerup', this.onDragEnd)
+				.on('pointerupoutside', this.onDragEnd)
+				.on('pointermove', this.onDragMove);
+		});
+		
+		console.log(this.heros);
+		
 		soundManager.play('bg');
-		console.log(this.enemies);
 	};
+	
+	onDragStart = (event) => {
+		const target = event.currentTarget;
+		
+		target.dragging = true;
+		target.data = event.data;
+		
+		target.startX = target.x;
+		target.startY = target.y;
+		
+		const newPosition = target.data.getLocalPosition(target.parent);
+		target.dragOffset = {
+			x: newPosition.x - target.x,
+			y: newPosition.y - target.y
+		};
+		
+		target.alpha = 0.7;
+		target.zIndex += 10;
+	};
+	
+	onDragMove = (event) => {
+		const target = event.currentTarget;
+		if (!target.dragging) return;
+		
+		const newPosition = target.data.getLocalPosition(target.parent);
+		target.x = newPosition.x - target.dragOffset.x;
+		target.y = newPosition.y - target.dragOffset.y;
+	};
+	
+	onDragEnd = (event) => {
+		const target = event.currentTarget;
+		target.dragging = false;
+		target.data = null;
+		target.alpha = 1;
+		target.zIndex -= 10;
+		
+		const collidedHero = this.findCollidedHero(target);
+		
+		if (collidedHero) {
+			const draggedHeroType = target.owner.heroType;
+			const collidedHeroType = collidedHero.owner.heroType;
+			
+			if (draggedHeroType === collidedHeroType) {
+				this.mergeHeroes(target, collidedHero);
+			} else {
+				this.animateReturn(target);
+			}
+		} else {
+			this.animateReturn(target);
+		}
+	};
+	
+	findCollidedHero(target) {
+		return this.heros.find(hero => {
+			if (hero === target) return false;
+			
+			const dx = hero.x - target.x;
+			const dy = hero.y - target.y;
+			const distance = Math.sqrt(dx * dx + dy * dy);
+			
+			return distance < 50;
+		});
+	}
+	
+	mergeHeroes(draggedHero, collidedHero) {
+		this.showShadow(collidedHero.owner);
+		draggedHero.owner.getElement().visible = false;
+	}
+	
+	animateReturn(target) {
+		gsap.to(target, { x: target.startX, y: target.startY, duration: 0.3, ease: 'power2.out' });
+	}
+	
+	showShadow(hero) {
+		hero.showShadow();
+		hero.increaseLevel();
+	}
 	
 	toggleSound = () => {
 		const isMuted = soundManager.toggleMute();

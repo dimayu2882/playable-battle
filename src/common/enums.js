@@ -27,6 +27,9 @@ export const labels = {
 	minotaur1: 'minotaur1',
 	minotaur2: 'minotaur2',
 	minotaur3: 'minotaur3',
+	shadowMerge: 'shadowMerge',
+	heroOne: 'heroOne',
+	heroTwo: 'heroTwo',
 	
 	// UI Components
 	hpBar: 'hpBar',
@@ -35,7 +38,10 @@ export const labels = {
 	// Game States
 	gameOver: 'gameOver',
 	gameWin: 'gameWin',
-	gameStart: 'gameStart'
+	gameStart: 'gameStart',
+	levelOne: 'levelOne',
+	levelTwo: 'levelTwo',
+	levelThree: 'levelThree',
 };
 
 export const elementType = {

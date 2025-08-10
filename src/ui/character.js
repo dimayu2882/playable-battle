@@ -1,23 +1,31 @@
+import { Assets } from 'pixi.js';
+
 import { allTextureKeys } from '../common/assets.js';
 import { PixiElement } from '../utils/PixiElement.js';
 import { elementType, labels } from '../common/enums.js';
 
 export class CharacterElement extends PixiElement {
-	constructor(app, texture, isHero, isEnemyKing, hp = 1) {
+	constructor(app, texture, isHero, isEnemyKing, hp = 1, heroType, zIndex) {
 		super({
 			type: elementType.CONTAINER,
 			label: isHero ? labels.heroContainer : labels.enemyContainer,
 			interactive: isHero,
 			buttonMode: isHero,
 			cursor: isHero ? 'pointer' : 'default',
-		}, () => this.onResizeHandler(), true);
+			zIndex
+		}, () => this.onResizeHandler, true);
 		
 		this.getElement().owner = this;
 		this.app = app;
 		this.texture = texture;
 		this.isHero = isHero;
 		this.isEnemyKing = isEnemyKing;
+		this.heroType = heroType;
 		this.hp = hp;
+		this.characterHp = null;
+		this.spriteLevel = null;
+		this.characterHpFull = null;
+		this.shadowMerge = null;
 		
 		this.initCharacter();
 	}
@@ -33,6 +41,34 @@ export class CharacterElement extends PixiElement {
 		this.charterElement = character.getElement();
 		this.charterElement.play();
 		
+		if (this.isHero && this.texture === allTextureKeys.gunslinger1Idle) {
+			const characterLevelTwo = new PixiElement({
+				type: elementType.ANIMATED_SPRITE,
+				texture: allTextureKeys.gunslinger2Idle,
+				animationSpeed: 0.6,
+				loop: true,
+				anchor: [0.5],
+				visible: false,
+				scale: [0.7]
+			});
+			this.characterLevelTwoElement = characterLevelTwo.getElement();
+			this.characterLevelTwoElement.play();
+			
+			const characterLevelTree = new PixiElement({
+				type: elementType.ANIMATED_SPRITE,
+				texture: allTextureKeys.gunslinger3Idle,
+				animationSpeed: 0.6,
+				loop: true,
+				anchor: [0.5],
+				visible: false,
+				scale: [0.7]
+			});
+			this.characterLevelTreeElement = characterLevelTree.getElement();
+			this.characterLevelTreeElement.play();
+			
+			this.addChildren([this.characterLevelTwoElement, this.characterLevelTreeElement]);
+		}
+		
 		if (this.texture === allTextureKeys.gunslinger1Idle) this.charterElement.scale.set(0.7);
 		
 		const characterHpBar = new PixiElement({
@@ -41,27 +77,34 @@ export class CharacterElement extends PixiElement {
 		});
 		this.characterHpBarElement = characterHpBar.getElement();
 		
-		const characterHpEmpty = new PixiElement({
+		this.characterHpEmpty = new PixiElement({
 			type: elementType.SPRITE,
 			texture: allTextureKeys.hpBarEmpty,
 		});
-		this.characterHpEmptyElement = characterHpEmpty.getElement();
+		this.characterHpEmptyElement = this.characterHpEmpty.getElement();
 		
-		const characterHpFull = new PixiElement({
+		if (this.isHero) {
+			this.characterHpFull = new PixiElement({
+				type: elementType.SPRITE,
+				texture: allTextureKeys.hpBarHero,
+			});
+		} else {
+			this.characterHpFull = new PixiElement({
+				type: elementType.SPRITE,
+				texture: allTextureKeys.hpBarEnemy,
+			});
+		}
+		this.characterHpFullElement = this.characterHpFull.getElement();
+		
+		this.spriteLevel = allTextureKeys.levelOneEnemy;
+		if (this.isEnemyKing) this.spriteLevel = allTextureKeys.levelThreeEnemy;
+		if (this.isHero) this.spriteLevel = allTextureKeys.levelOneHero;
+		
+		this.characterHp = new PixiElement({
 			type: elementType.SPRITE,
-			texture: allTextureKeys.hpBarEnemy,
+			texture: this.spriteLevel,
 		});
-		this.characterHpFullElement = characterHpFull.getElement();
-		
-		let spriteLevel = allTextureKeys.levelOneEnemy;
-		if (this.hp === 2) spriteLevel = allTextureKeys.levelTwoHero;
-		if (this.hp === 3) spriteLevel = allTextureKeys.levelThreeEnemy;
-		
-		const characterHp = new PixiElement({
-			type: elementType.SPRITE,
-			texture: spriteLevel,
-		});
-		this.characterHpElement = characterHp.getElement();
+		this.characterHpElement = this.characterHp.getElement();
 		
 		const characterHpText = new PixiElement({
 			type: elementType.TEXT,
@@ -85,17 +128,59 @@ export class CharacterElement extends PixiElement {
 			this.characterHpTextElement
 		);
 		
+		if (this.isHero) {
+			this.shadowMerge = new PixiElement({
+				type: elementType.ANIMATED_SPRITE,
+				texture: allTextureKeys.mergeExplosionJSON,
+				label: labels.shadowMerge,
+				animationSpeed: 0.6,
+				anchor: [0.5],
+				visible: false,
+			}).getElement();
+			
+			this.addChildren([this.shadowMerge]);
+		}
+		
 		this.addChildren([this.charterElement, this.characterHpBarElement]);
 		this.setElementsPosition();
 	}
 	
-	moveCharacter() {
-		console.log('👊');
-	}
+	showShadow = () => {
+		this.shadowMerge.visible = true;
+		this.shadowMerge.loop = false;
+		this.shadowMerge.animationSpeed = 1;
+		this.shadowMerge.gotoAndStop(0);
+		this.shadowMerge.play();
+	};
+	
+	increaseLevel = () => {
+		this.hp++;
+		this.characterHpTextElement.text = this.hp;
+		if (this.hp === 2) {
+			this.characterHpBarElement.scale.set(0.45);
+			this.spriteLevel = allTextureKeys.levelTwoHero;
+			
+			this.charterElement.visible = false;
+			this.characterLevelTwoElement.visible = true;
+			this.characterLevelTwoElement.play();
+		}
+		if (this.hp === 3) {
+			this.characterHpBarElement.scale.set(0.5);
+			this.spriteLevel = allTextureKeys.levelThreeHero;
+			
+			this.characterLevelTwoElement.visible = false;
+			this.characterLevelTreeElement.visible = true;
+			this.characterLevelTreeElement.play();
+		}
+		
+		this.characterHpElement.texture = Assets.cache.get(this.spriteLevel);
+		
+		console.log(this.hp, this.spriteLevel, this.characterHp);
+	};
 	
 	setElementsPosition = () => {
 		if (this.hp === 1) this.characterHpBarElement.scale.set(0.35);
-		
+		if (this.hp === 2) this.characterHpBarElement.scale.set(0.4);
 		if (this.hp === 3) this.characterHpBarElement.scale.set(0.5);
 		
 		this.characterHpBarElement.pivot.set(
