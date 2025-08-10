@@ -8,7 +8,6 @@ import createTextButton from './textButton.js';
 import createScene from './scene.js';
 import createTitleEnemies from './titleEnemies.js';
 import createTitleUser from './titleUser.js';
-import createCharacter from './character.js';
 
 export {
 	createSoundButton,
@@ -21,5 +20,4 @@ export {
 	createScene,
 	createTitleEnemies,
 	createTitleUser,
-	createCharacter
 };

@@ -2,6 +2,22 @@ import { gsap } from 'gsap';
 
 export const getUIElement = (container, label) => container.getChildByLabel(label);
 
+export const getUIElements = (container, label) => {
+	const result = [];
+	
+	function traverse(parent) {
+		if (parent.label === label) {
+			result.push(parent);
+		}
+		if (parent.children && parent.children.length > 0) {
+			parent.children.forEach(child => traverse(child));
+		}
+	}
+	
+	traverse(container);
+	return result;
+}
+
 export function useIdleCursorTracker(
 	{ canvas, timeout = 5000, getMatchedGroup, finger }) {
 	let isAnimating = false;

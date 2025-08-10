@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 
 import { labels } from '../common/enums.js';
-import { getUIElement } from '../helpers/index.js';
+import { getUIElement, getUIElements } from '../helpers/index.js';
 import { eventBus } from '../utils/EventBus.js';
 import { soundManager } from '../utils/SoundManager.js';
 
@@ -14,6 +14,9 @@ export class GameManager {
 		this.soundButton = getUIElement(this.gameContainer, labels.sound);
 		this.slash = getUIElement(this.soundButton, labels.muteSlash);
 		this.finishScene = getUIElement(this.gameContainer, labels.sceneFinish);
+		this.scene = getUIElement(this.gameContainer, labels.scene);
+		this.heros = getUIElements(this.scene, labels.heroContainer);
+		this.enemies = getUIElements(this.scene, labels.enemyContainer);
 		
 		// Подписка на события EventBus
 		eventBus.on('toggleSound', this.toggleSound);
@@ -22,6 +25,7 @@ export class GameManager {
 		this.soundButton.on('pointerdown', () => eventBus.emit('toggleSound'));
 		
 		soundManager.play('bg');
+		console.log(this.enemies);
 	};
 	
 	toggleSound = () => {

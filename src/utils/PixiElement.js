@@ -5,26 +5,26 @@ import { getAppInstance, UIFactory } from './utils.js';
 export class PixiElement {
 	constructor(config = {}, onResizeHandler, isSubscribeToResize) {
 		this.type = config.type || elementType.CONTAINER;
-		this.instance = this._create(config);
+		this.instance = this.#create(config);
 		this.app = getAppInstance();
 		this.instance.__owner = this;
 		this.onResizeHandler = onResizeHandler;
 		if (isSubscribeToResize) subscribeToResize(this);
 	}
 
-	_create(config) {
+	#create(config) {
 		const element = UIFactory.createElement(this.type, config);
-		this._applyCommonProperties(element, config);
+		this.#applyCommonProperties(element, config);
 		return element;
 	}
 
-	_applyCommonProperties(element, config) {
+	#applyCommonProperties(element, config) {
 		const properties = {
 			width: (el, width) => el.width = width,
 			height: (el, height) => el.height = height,
 			position: (el, pos) => el.position.set(...pos),
-			positionX: (el, pos) => el.positionX =  pos,
-			positionY: (el, pos) => el.positionY = pos,
+			positionX: (el, pos) => el.position.x =  pos,
+			positionY: (el, pos) => el.position.y = pos,
 			scale: (el, scale) => el.scale.set(...scale),
 			anchor: (el, anchor) => el.anchor.set(...anchor),
 			pivot: (el, pivot) => el.pivot.set(...pivot),
