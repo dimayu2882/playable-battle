@@ -1,3 +1,5 @@
+import { Container, Graphics } from 'pixi.js';
+
 import { PixiElement } from '../utils/PixiElement.js';
 import { allTextureKeys } from '../common/assets.js';
 import { elementType, labels } from '../common/enums.js';
@@ -10,6 +12,9 @@ export default function createScene(app) {
 		label: labels.scene
 	}, onResizeHandler, true);
 	const sceneElement = scene.getElement();
+	
+	const sceneBgContainer = new Container();
+	sceneElement.addChild(sceneBgContainer);
 	
 	const sceneBackground = new PixiElement({
 		type: elementType.SPRITE,
@@ -159,102 +164,46 @@ export default function createScene(app) {
 			index
 		).getElement();
 	});
-
-	sceneElement.addChild(sceneBackgroundElement, titleEnemies, titleUser, ...enemies, ...heroes);
-	sceneElement.sortChildren();
+	
+	sceneBgContainer.addChild(sceneBackgroundElement, titleEnemies, titleUser, ...enemies, ...heroes);
 	
 	setPosition();
 	
 	function setPosition() {
-		sceneBackgroundElement.position.set(app.renderer.width / 2, app.renderer.height / 2);
+		sceneBgContainer.position.set(
+			app.renderer.width / 2,
+			app.renderer.height / 2
+		);
+		
+		sceneBackgroundElement.position.set(0, 0);
+		
 		titleEnemies.position.set(
-			app.renderer.width / 2 - sceneBackgroundElement.width / 2 + titleEnemies.width / 1.6,
-			sceneBackgroundElement.height / 2.8
+			-sceneBackgroundElement.width / 2 + titleEnemies.width / 1.6,
+			-sceneBackgroundElement.height / 2 + titleEnemies.height / 1.2
 		);
+		
 		titleUser.position.set(
-			app.renderer.width / 2 - sceneBackgroundElement.width / 2 + titleUser.width / 2.8,
-			sceneBackgroundElement.height / 1.3
+			-sceneBackgroundElement.width / 2 + titleEnemies.width / 1.6,
+			-sceneBackgroundElement.height / 6 + titleEnemies.height / 1.2
 		);
 		
-		enemies[0].position.set(
-			app.renderer.width / 2 + sceneBackgroundElement.width / 2.65 - enemies[0].width / 2,
-			sceneBackgroundElement.height / 2.4
-		);
+		enemies[0].position.set(0, -enemies[0].height / 2);
+		enemies[1].position.set(-enemies[1].width / 1.3, -enemies[1].height / 2);
+		enemies[2].position.set(-enemies[2].width / 0.65, -enemies[2].height / 2);
+		enemies[3].position.set(-enemies[3].width / 0.65, -enemies[3].height / 0.8);
+		enemies[4].position.set(-enemies[4].width / 1.1, -enemies[4].height / 0.6);
+		enemies[5].position.set(-enemies[5].width / 12, -enemies[5].height / 0.6);
+		enemies[6].position.set(sceneBackgroundElement.width / 3.5, -enemies[6].height / 0.6);
+		enemies[7].position.set(sceneBackgroundElement.width / 4,-sceneBackgroundElement.height / 13);
 		
-		enemies[1].position.set(
-			app.renderer.width / 2 + sceneBackgroundElement.width / 4.65 - enemies[1].width / 2,
-			sceneBackgroundElement.height / 2.4
-		);
-		
-		enemies[2].position.set(
-			app.renderer.width / 2 - enemies[2].width / 10.65,
-			sceneBackgroundElement.height / 2.4
-		);
-		
-		enemies[3].position.set(
-			app.renderer.width / 2 + sceneBackgroundElement.width / 2.65 - enemies[3].width / 2,
-			sceneBackgroundElement.height / 3.4
-		);
-		
-		enemies[4].position.set(
-			app.renderer.width / 2 + sceneBackgroundElement.width / 10.65 - enemies[4].width / 2,
-			sceneBackgroundElement.height / 3.4
-		);
-		
-		enemies[5].position.set(
-			app.renderer.width / 2.5 - enemies[5].width / 2,
-			sceneBackgroundElement.height / 3.4
-		);
-		
-		enemies[6].position.set(
-			app.renderer.width / 2 + sceneBackgroundElement.width / 4.65 - enemies[6].width / 2,
-			sceneBackgroundElement.height / 4.4
-		);
-		
-		enemies[7].position.set(
-			app.renderer.width / 2.2 - enemies[7].width / 2,
-			sceneBackgroundElement.height / 2.4
-		);
-		
-		heroes[0].position.set(
-			app.renderer.width / 1.85 - heroes[0].width / 2,
-			sceneBackgroundElement.height / 1.46
-		);
-		
-		heroes[1].position.set(
-			app.renderer.width / 1.5 - heroes[1].width / 2,
-			sceneBackgroundElement.height / 1.46
-		);
-		
-		heroes[2].position.set(
-			app.renderer.width / 2.8 - heroes[2].width / 10.65,
-			sceneBackgroundElement.height / 1.46
-		);
-		
-		heroes[3].position.set(
-			app.renderer.width / 2.2 - heroes[3].width / 2,
-			sceneBackgroundElement.height / 1.8
-		);
-		
-		heroes[4].position.set(
-			app.renderer.width / 2.1 - heroes[4].width / 2,
-			sceneBackgroundElement.height / 1.46
-		);
-		
-		heroes[5].position.set(
-			app.renderer.width / 1.45 - heroes[5].width / 2,
-			sceneBackgroundElement.height / 1.8
-		);
-		
-		heroes[6].position.set(
-			app.renderer.width / 1.85 - heroes[6].width / 2,
-			sceneBackgroundElement.height / 1.8
-		);
-		
-		heroes[7].position.set(
-			app.renderer.width / 2.45 - heroes[7].width / 2,
-			sceneBackgroundElement.height / 1.8
-		);
+		heroes[0].position.set(heroes[0].width / 0.5, sceneBackgroundElement.height / 4);
+		heroes[1].position.set(heroes[1].width / 1.1, sceneBackgroundElement.height / 4);
+		heroes[2].position.set(-heroes[2].width / 0.5, sceneBackgroundElement.height / 4);
+		heroes[3].position.set(-heroes[3].width / 0.9, sceneBackgroundElement.height / 8);
+		heroes[4].position.set(-heroes[4].width / 1.4, sceneBackgroundElement.height / 4);
+		heroes[5].position.set(0, sceneBackgroundElement.height / 15);
+		heroes[6].position.set(sceneBackgroundElement.width / 4, sceneBackgroundElement.height / 7);
+		heroes[7].position.set(-heroes[7].width / 0.7, sceneBackgroundElement.height / 15);
 	}
 	
 	function onResizeHandler() {

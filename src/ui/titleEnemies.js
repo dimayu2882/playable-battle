@@ -30,7 +30,8 @@ export default function createTitleEnemies() {
 		anchor: [0.5]
 	});
 	const enemiesTextElement = enemiesText.getElement();
-	enemiesTextElement.rotation = -Math.PI / 2;
+	
+	enemiesTextElement.rotation = - Math.PI / 2;
 	
 	titleEnemiesElement.addChild(enemiesLogoElement, enemiesTextElement);
 	
