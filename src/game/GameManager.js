@@ -79,7 +79,18 @@ export class GameManager {
 			const draggedHeroType = target.owner.heroType;
 			const collidedHeroType = collidedHero.owner.heroType;
 			
-			if (draggedHeroType === collidedHeroType) {
+			console.log('Before merge check:', {
+				draggedHeroType,
+				collidedHeroType,
+				targetHp: target.owner.hp,
+				collidedHp: collidedHero.owner.hp,
+				typesEqual: draggedHeroType === collidedHeroType,
+				hpEqual: target.owner.hp === collidedHero.owner.hp,
+				targetOwner: target.owner,
+				collidedOwner: collidedHero.owner,
+			});
+			
+			if (draggedHeroType === collidedHeroType && target.owner.hp === collidedHero.owner.hp) {
 				this.mergeHeroes(target, collidedHero);
 			} else {
 				this.animateReturn(target);
@@ -91,7 +102,7 @@ export class GameManager {
 	
 	findCollidedHero(target) {
 		return this.heros.find(hero => {
-			if (hero === target) return false;
+			if (hero === target || !hero.visible) return false;
 			
 			const dx = hero.x - target.x;
 			const dy = hero.y - target.y;
@@ -102,8 +113,12 @@ export class GameManager {
 	}
 	
 	mergeHeroes(draggedHero, collidedHero) {
-		this.showShadow(collidedHero.owner);
+		const heroIndex = this.heros.indexOf(draggedHero);
+		if (heroIndex > -1) {
+			this.heros.splice(heroIndex, 1);
+		}
 		draggedHero.owner.getElement().visible = false;
+		this.showShadow(collidedHero.owner);
 	}
 	
 	animateReturn(target) {

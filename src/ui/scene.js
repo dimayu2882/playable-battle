@@ -1,4 +1,4 @@
-import { Container, Graphics } from 'pixi.js';
+import { Container } from 'pixi.js';
 
 import { PixiElement } from '../utils/PixiElement.js';
 import { allTextureKeys } from '../common/assets.js';
@@ -13,9 +13,11 @@ export default function createScene(app) {
 	}, onResizeHandler, true);
 	const sceneElement = scene.getElement();
 	
+	// контейнер с фоном и юнитами
 	const sceneBgContainer = new Container();
 	sceneElement.addChild(sceneBgContainer);
 	
+	// фон
 	const sceneBackground = new PixiElement({
 		type: elementType.SPRITE,
 		texture: allTextureKeys.field,
@@ -24,191 +26,84 @@ export default function createScene(app) {
 	});
 	const sceneBackgroundElement = sceneBackground.getElement();
 	
+	// заголовки
 	const titleEnemies = createTitleEnemies(app);
 	const titleUser = createTitleUser(app);
 	
-	// Конфигурация врагов
+	// конфиг врагов
 	const enemiesConfig = [
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonIdle,
-			isHero: false,
-			isKing: false,
-			hp: 1
-		},
-		{
-			texture: allTextureKeys.skeletonKingIdle,
-			isHero: false,
-			isKing: true,
-			hp: 3
-		}
+		...Array(7).fill({ texture: allTextureKeys.skeletonIdle, isKing: false, hp: 1 }),
+		{ texture: allTextureKeys.skeletonKingIdle, isKing: true, hp: 3 }
 	];
 	
-	let enemies = [];
+	// создаём врагов
+	const enemies = enemiesConfig.map(cfg =>
+		new CharacterElement(app, cfg.texture, false, cfg.isKing, cfg.hp).getElement()
+	);
 	
-	// Создаем врагов
-	enemies = enemiesConfig.map(config => {
-		return new CharacterElement(
-			app,
-			config.texture,
-			config.isHero,
-			config.isKing,
-			config.hp
-		).getElement();
-	});
-	
+	// конфиг героев
 	const heroesConfig = [
-		{
-			texture: allTextureKeys.minotaur1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroOne
-		},
-		{
-			texture: allTextureKeys.minotaur1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroOne
-		},
-		{
-			texture: allTextureKeys.minotaur1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroOne
-		},
-		{
-			texture: allTextureKeys.minotaur1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroOne
-		},
-		{
-			texture: allTextureKeys.gunslinger1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroTwo
-		},
-		{
-			texture: allTextureKeys.gunslinger1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroTwo
-		},
-		{
-			texture: allTextureKeys.gunslinger1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroTwo
-		},
-		{
-			texture: allTextureKeys.gunslinger1Idle,
-			isHero: true,
-			isKing: false,
-			hp: 1,
-			heroType: labels.heroTwo
-		},
+		...Array(4).fill({ texture: allTextureKeys.minotaur1Idle, heroType: labels.heroOne }),
+		...Array(4).fill({ texture: allTextureKeys.gunslinger1Idle, heroType: labels.heroTwo })
 	];
 	
-	let heroes = [];
+	// создаём героев
+	const heroes = heroesConfig.map((cfg, i) =>
+		new CharacterElement(app, cfg.texture, true, false, 1, cfg.heroType, i).getElement()
+	);
 	
-	heroes = heroesConfig.map((config, index) => {
-		return new CharacterElement(
-			app,
-			config.texture,
-			config.isHero,
-			config.isKing,
-			config.hp,
-			config.heroType,
-			index
-		).getElement();
-	});
-	
+	// добавляем в контейнер
 	sceneBgContainer.addChild(sceneBackgroundElement, titleEnemies, titleUser, ...enemies, ...heroes);
 	
-	setPosition();
-	
+	// ---- Layout ----
 	function setPosition() {
-		sceneBgContainer.position.set(
-			app.renderer.width / 2,
-			app.renderer.height / 2
-		);
-		
+		sceneBgContainer.position.set(app.renderer.width / 2, app.renderer.height / 2);
 		sceneBackgroundElement.position.set(0, 0);
 		
+		// заголовки
 		titleEnemies.position.set(
 			-sceneBackgroundElement.width / 2 + titleEnemies.width / 1.6,
-			-sceneBackgroundElement.height / 2 + titleEnemies.height / 1.2
+			-sceneBackgroundElement.height / 2 + titleEnemies.height / 1.3
 		);
 		
 		titleUser.position.set(
-			-sceneBackgroundElement.width / 2 + titleEnemies.width / 1.6,
-			-sceneBackgroundElement.height / 6 + titleEnemies.height / 1.2
+			-sceneBackgroundElement.width / 1.75 + titleUser.width / 1.6,
+			sceneBackgroundElement.height / 6 + titleUser.height / 1.2
 		);
 		
-		enemies[0].position.set(0, -enemies[0].height / 2);
-		enemies[1].position.set(-enemies[1].width / 1.3, -enemies[1].height / 2);
-		enemies[2].position.set(-enemies[2].width / 0.65, -enemies[2].height / 2);
-		enemies[3].position.set(-enemies[3].width / 0.65, -enemies[3].height / 0.8);
-		enemies[4].position.set(-enemies[4].width / 1.1, -enemies[4].height / 0.6);
-		enemies[5].position.set(-enemies[5].width / 12, -enemies[5].height / 0.6);
-		enemies[6].position.set(sceneBackgroundElement.width / 3.5, -enemies[6].height / 0.6);
-		enemies[7].position.set(sceneBackgroundElement.width / 4,-sceneBackgroundElement.height / 13);
+		// позиции врагов (массив координат)
+		const enemyPositions = [
+			[0, -enemies[0].height / 2],
+			[-enemies[1].width / 1.3, -enemies[1].height / 2],
+			[-enemies[2].width / 0.65, -enemies[2].height / 2],
+			[-enemies[3].width / 0.65, -enemies[3].height / 0.8],
+			[-enemies[4].width / 1.1, -enemies[4].height / 0.6],
+			[-enemies[5].width / 12, -enemies[5].height / 0.6],
+			[sceneBackgroundElement.width / 3.8, -enemies[6].height / 0.6],
+			[sceneBackgroundElement.width / 4, -sceneBackgroundElement.height / 13]
+		];
 		
-		heroes[0].position.set(heroes[0].width / 0.5, sceneBackgroundElement.height / 4);
-		heroes[1].position.set(heroes[1].width / 1.1, sceneBackgroundElement.height / 4);
-		heroes[2].position.set(-heroes[2].width / 0.5, sceneBackgroundElement.height / 4);
-		heroes[3].position.set(-heroes[3].width / 0.9, sceneBackgroundElement.height / 8);
-		heroes[4].position.set(-heroes[4].width / 1.4, sceneBackgroundElement.height / 4);
-		heroes[5].position.set(0, sceneBackgroundElement.height / 15);
-		heroes[6].position.set(sceneBackgroundElement.width / 4, sceneBackgroundElement.height / 7);
-		heroes[7].position.set(-heroes[7].width / 0.7, sceneBackgroundElement.height / 15);
+		enemies.forEach((enemy, i) => enemy.position.set(...enemyPositions[i]));
+		
+		// позиции героев
+		const heroPositions = [
+			[heroes[0].width / 0.5, sceneBackgroundElement.height / 4],
+			[heroes[1].width / 1.1, sceneBackgroundElement.height / 4],
+			[-heroes[2].width / 0.5, sceneBackgroundElement.height / 4],
+			[-heroes[3].width / 0.9, sceneBackgroundElement.height / 8],
+			[-heroes[4].width / 1.4, sceneBackgroundElement.height / 4],
+			[0, sceneBackgroundElement.height / 15],
+			[sceneBackgroundElement.width / 3.6, sceneBackgroundElement.height / 7.5],
+			[-heroes[7].width / 0.7, sceneBackgroundElement.height / 15]
+		];
+		
+		heroes.forEach((hero, i) => hero.position.set(...heroPositions[i]));
 	}
 	
 	function onResizeHandler() {
 		setPosition();
 	}
 	
+	setPosition();
 	return sceneElement;
 }
