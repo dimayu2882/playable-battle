@@ -1,5 +1,6 @@
 import { Assets } from 'pixi.js';
 
+import { eventBus } from '../utils/EventBus.js';
 import { allTextureKeys } from '../common/assets.js';
 import { PixiElement } from '../utils/PixiElement.js';
 import { elementType, labels } from '../common/enums.js';
@@ -24,6 +25,7 @@ export class CharacterElement extends PixiElement {
 		this.isEnemyKing = isEnemyKing;
 		this.heroType = heroType;
 		this.hp = hp;
+		this.level = hp;
 		
 		// внутренние элементы
 		this.charterElement = null;
@@ -41,17 +43,15 @@ export class CharacterElement extends PixiElement {
 	}
 	
 	/** Создание базового персонажа */
-	/** Создание базового персонажа */
 	initCharacter() {
 		if (this.isHero) {
 			// герой: создаём idle по уровню
-			this.charterElement = this.createIdleByLevel(this.hp);
+			this.charterElement = this.createIdleByLevel(this.level);
 			this.createHeroStates();
 			this.createHpBar();
 			this.createShadowMerge();
 			this.addChildren([this.charterElement, this.characterAttackElement, this.characterMoveElement, this.characterHpBarElement]);
 		} else {
-			// враг: обычный idle
 			this.charterElement = this.createAnimatedSprite({ texture: this.texture });
 			this.createEnemyStates();
 			this.createHpBar();
@@ -82,8 +82,8 @@ export class CharacterElement extends PixiElement {
 		
 		const textures = {
 			1: isGunslinger ? allTextureKeys.gunslinger1Idle : allTextureKeys.minotaur1Idle,
-			2: isGunslinger ? allTextureKeys.gunslinger2Idle : allTextureKeys.minotaur2Idle,
-			3: isGunslinger ? allTextureKeys.gunslinger3Idle : allTextureKeys.minotaur3Idle
+			3: isGunslinger ? allTextureKeys.gunslinger2Idle : allTextureKeys.minotaur2Idle,
+			5: isGunslinger ? allTextureKeys.gunslinger3Idle : allTextureKeys.minotaur3Idle
 		};
 		
 		const scale = isGunslinger ? 0.7 : 1;
@@ -169,7 +169,7 @@ export class CharacterElement extends PixiElement {
 		
 		this.characterHpTextElement = new PixiElement({
 			type: elementType.TEXT,
-			text: this.hp,
+			text: this.level,
 			style: {
 				fontSize: 30,
 				fontStyle: 'bold',
@@ -218,8 +218,9 @@ export class CharacterElement extends PixiElement {
 	
 	/** Повышение уровня героя */
 	increaseLevel = () => {
-		this.hp++;
-		this.characterHpTextElement.text = this.hp;
+		this.hp += 2;
+		this.level += 2;
+		this.characterHpTextElement.text = this.level;
 		
 		// Удаляем старые idle/attack/move
 		if (this.charterElement) this.charterElement.destroy();
@@ -227,21 +228,21 @@ export class CharacterElement extends PixiElement {
 		if (this.characterMoveElement) this.characterMoveElement.destroy();
 		
 		// Создаём новые idle/attack/move для уровня hp
-		this.charterElement = this.createIdleByLevel(this.hp);
+		this.charterElement = this.createIdleByLevel(this.level);
 		
 		const isGunslinger = this.texture === allTextureKeys.gunslinger1Idle;
-		if (this.hp === 2) {
+		if (this.level === 3) {
 			this.characterHpBarElement.scale.set(0.45);
 			this.spriteLevel = allTextureKeys.levelTwoHero;
-		} else if (this.hp === 3) {
+		} else if (this.level === 5) {
 			this.characterHpBarElement.scale.set(0.5);
 			this.spriteLevel = allTextureKeys.levelThreeHero;
 		}
 		
 		this.characterAttackElement = this.createCharacterState(
 			isGunslinger
-				? (this.hp === 2 ? allTextureKeys.gunslinger2Attack : allTextureKeys.gunslinger3Attack)
-				: (this.hp === 2 ? allTextureKeys.minotaur2Attack : allTextureKeys.minotaur3Attack),
+				? (this.level === 3 ? allTextureKeys.gunslinger2Attack : allTextureKeys.gunslinger3Attack)
+				: (this.level === 3 ? allTextureKeys.minotaur2Attack : allTextureKeys.minotaur3Attack),
 			0.5,
 			labels.heroAttack,
 			isGunslinger ? 0.85 : 1
@@ -249,8 +250,8 @@ export class CharacterElement extends PixiElement {
 		
 		this.characterMoveElement = this.createCharacterState(
 			isGunslinger
-				? (this.hp === 2 ? allTextureKeys.gunslinger2Move : allTextureKeys.gunslinger3Move)
-				: (this.hp === 2 ? allTextureKeys.minotaur2Move : allTextureKeys.minotaur3Move),
+				? (this.level === 3 ? allTextureKeys.gunslinger2Move : allTextureKeys.gunslinger3Move)
+				: (this.level === 3 ? allTextureKeys.minotaur2Move : allTextureKeys.minotaur3Move),
 			0.2,
 			labels.heroMove,
 			isGunslinger ? 0.85 : 1
@@ -280,6 +281,9 @@ export class CharacterElement extends PixiElement {
 				// дошёл до врага
 				this.characterMoveElement.visible = false;
 				this.characterAttackElement.visible = true;
+				
+				this.startAttack(target.owner);
+				
 				ticker.remove(update);
 				return;
 			}
@@ -294,8 +298,53 @@ export class CharacterElement extends PixiElement {
 		ticker.add(update);
 	}
 	
+	startAttack(targetOwner) {
+		if (!targetOwner || !targetOwner.takeDamage) return;
+		
+		// если у атакующего уже есть активный цикл — не запускать второй
+		if (this.attackInterval) return;
+		
+		this.attackInterval = setInterval(() => {
+			// урон равен hp атакующего
+			targetOwner.takeDamage(this.hp);
+			
+			// если цель умерла — прекратить атаку
+			if (targetOwner.level <= 0) {
+				clearInterval(this.attackInterval);
+				this.attackInterval = null;
+				this.characterAttackElement.visible = false;
+				this.charterElement.visible = true;
+				eventBus.emit('battleStart');
+			}
+		}, 2000);
+	}
+	
+	takeDamage(amount) {
+		if (this.isHero) {
+			console.log(this.level, this.heroType);
+		}
+		this.level -= amount;
+		if (this.level < 0) this.level = 0;
+		
+		// визуально обновить HP bar
+		const maxHpWidth = this.characterHpEmptyElement.width;
+		this.characterHpFullElement.width = (this.level / 3) * maxHpWidth;
+		
+		if (this.level <= 0) {
+			this.die();
+		}
+	}
+	
+	die() {
+		this.getElement().visible = false;
+		if (this.attackInterval) clearInterval(this.attackInterval);
+		
+		// убрать из массива героев/врагов (лучше через GameManager)
+		eventBus.emit('characterDied', this);
+	}
+	
 	setElementsPosition = () => {
-		const barScale = { 1: 0.35, 2: 0.4, 3: 0.5 }[this.hp] || 0.35;
+		const barScale = { 1: 0.35, 2: 0.4, 3: 0.5 }[this.level] || 0.35;
 		this.characterHpBarElement.scale.set(barScale);
 		
 		this.characterHpBarElement.pivot.set(

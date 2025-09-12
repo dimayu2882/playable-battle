@@ -26,6 +26,11 @@ export class GameManager {
 			this.heros.forEach(hero => this.battleStart(hero, true));
 			this.enemies.forEach(enemy => this.battleStart(enemy, false));
 		});
+		eventBus.on('characterDied', (character) => {
+			character.isHero
+				? this.heros = this.heros.filter(h => h.owner !== character)
+				: this.enemies = this.enemies.filter(e => e.owner !== character);
+		});
 		
 		// Добавление обработчиков
 		this.soundButton.on('pointerdown', () => eventBus.emit('toggleSound'));
@@ -109,11 +114,11 @@ export class GameManager {
 	
 	mergeHeroes(draggedHero, collidedHero) {
 		const heroIndex = this.heros.indexOf(draggedHero);
-		if (heroIndex > -1) {
-			this.heros.splice(heroIndex, 1);
-		}
+		if (heroIndex > -1) this.heros.splice(heroIndex, 1);
 		draggedHero.owner.getElement().visible = false;
 		this.showShadow(collidedHero.owner);
+		
+		console.log(this.heros);
 	}
 	
 	animateReturn(target) {
@@ -126,8 +131,22 @@ export class GameManager {
 	}
 	
 	battleStart = (character, hero) => {
-		const closestCharacter = this.findClosestCharacter(character, hero);
-		if (closestCharacter) character.owner.moveCharacter(closestCharacter);
+		if (character) {
+			const closestCharacter = this.findClosestCharacter(character, hero);
+			if (closestCharacter) character.owner.moveCharacter(closestCharacter);
+			return;
+		}
+		
+		// Иначе запускаем для всех
+		this.heros.forEach(hero => {
+			const target = this.findClosestCharacter(hero, true);
+			if (target) hero.owner.moveCharacter(target);
+		});
+		
+		this.enemies.forEach(enemy => {
+			const target = this.findClosestCharacter(enemy, false);
+			if (target) enemy.owner.moveCharacter(target);
+		});
 	}
 	
 	findClosestCharacter(character, hero) {

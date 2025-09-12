@@ -32,7 +32,7 @@ export default function createScene(app) {
 	
 	// конфиг врагов
 	const enemiesConfig = [
-		...Array(7).fill({ texture: allTextureKeys.skeletonIdle, isKing: false, hp: 1 }),
+		...Array(6).fill({ texture: allTextureKeys.skeletonIdle, isKing: false, hp: 1 }),
 		{ texture: allTextureKeys.skeletonKingIdle, isKing: true, hp: 3 }
 	];
 	
@@ -79,7 +79,6 @@ export default function createScene(app) {
 			[-enemies[3].width / 0.65, -enemies[3].height / 0.8],
 			[-enemies[4].width / 1.1, -enemies[4].height / 0.6],
 			[-enemies[5].width / 12, -enemies[5].height / 0.6],
-			[sceneBackgroundElement.width / 3.8, -enemies[6].height / 0.6],
 			[sceneBackgroundElement.width / 4, -sceneBackgroundElement.height / 13]
 		];
 		
