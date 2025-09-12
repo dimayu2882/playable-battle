@@ -1,4 +1,4 @@
-import { Assets } from 'pixi.js';
+import { Assets, Rectangle } from 'pixi.js';
 
 import { allTextureKeys } from '../common/assets.js';
 import { PixiElement } from '../utils/PixiElement.js';
@@ -29,6 +29,8 @@ export class CharacterElement extends PixiElement {
 		this.charterElement = null;
 		this.characterLevelTwoElement = null;
 		this.characterLevelTreeElement = null;
+		this.characterAttackElement = null;
+		this.characterMoveElement = null;
 		this.characterHpBarElement = null;
 		this.characterHpEmptyElement = null;
 		this.characterHpFullElement = null;
@@ -48,6 +50,7 @@ export class CharacterElement extends PixiElement {
 		if (this.isHero) this.createShadowMerge();
 		
 		this.addChildren([this.charterElement, this.characterHpBarElement]);
+		
 		this.setElementsPosition();
 	}
 	
@@ -63,9 +66,22 @@ export class CharacterElement extends PixiElement {
 		this.charterElement = character.getElement();
 		this.charterElement.play();
 		
-		if (this.texture === allTextureKeys.gunslinger1Idle) {
-			this.charterElement.scale.set(0.7);
+		if(this.isHero) {
+			this.characterAttackElement = this.createHeroAttack(allTextureKeys.minotaur1Attack, 0.2);
+			
+			if (this.texture === allTextureKeys.gunslinger1Idle) {
+				this.charterElement.scale.set(0.7);
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.gunslinger1Attack, 0.5);
+				this.characterAttackElement.scale.set(0.7);
+			}
+		} else {
+			if(this.isEnemyKing) {
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.skeletonKingAttack, 0.2);
+			} else {
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.skeletonAttack, 0.5);
+			}
 		}
+		this.addChildren([this.characterAttackElement]);
 	}
 	
 	/** Анимации для апгрейдов героя */
@@ -98,6 +114,21 @@ export class CharacterElement extends PixiElement {
 			anchor: [0.5],
 			visible: false,
 			scale: [scale, scale]
+		}).getElement();
+		el.play();
+		return el;
+	}
+	
+	/** Создание героя атаки */
+	createHeroAttack(texture, speed) {
+		const el = new PixiElement({
+			type: elementType.ANIMATED_SPRITE,
+			texture,
+			animationSpeed: speed,
+			loop: true,
+			anchor: [0.5],
+			// scale: [0.8],
+			// visible: false,
 		}).getElement();
 		el.play();
 		return el;
@@ -189,16 +220,35 @@ export class CharacterElement extends PixiElement {
 		this.hp++;
 		this.characterHpTextElement.text = this.hp;
 		
+		// Удаляем старую анимацию атаки, если она есть
+		if (this.characterAttackElement) {
+			this.characterAttackElement.destroy();
+		}
+		
 		if (this.hp === 2) {
 			this.characterHpBarElement.scale.set(0.45);
 			this.spriteLevel = allTextureKeys.levelTwoHero;
 			this.switchCharacterLevel(this.charterElement, this.characterLevelTwoElement);
+			
+			if (this.texture === allTextureKeys.minotaur1Idle) {
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.minotaur2Attack, 0.5);
+			} else {
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.gunslinger2Attack, 0.5);
+			}
+			this.addChildren([this.characterAttackElement]);
 		}
 		
 		if (this.hp === 3) {
 			this.characterHpBarElement.scale.set(0.5);
 			this.spriteLevel = allTextureKeys.levelThreeHero;
 			this.switchCharacterLevel(this.characterLevelTwoElement, this.characterLevelTreeElement);
+			
+			if (this.texture === allTextureKeys.minotaur1Idle) {
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.minotaur3Attack, 0.5);
+			} else {
+				this.characterAttackElement = this.createHeroAttack(allTextureKeys.gunslinger3Attack, 0.5);
+			}
+			this.addChildren([this.characterAttackElement]);
 		}
 		
 		this.characterHpElement.texture = Assets.cache.get(this.spriteLevel);

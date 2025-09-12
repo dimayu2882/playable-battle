@@ -79,17 +79,6 @@ export class GameManager {
 			const draggedHeroType = target.owner.heroType;
 			const collidedHeroType = collidedHero.owner.heroType;
 			
-			console.log('Before merge check:', {
-				draggedHeroType,
-				collidedHeroType,
-				targetHp: target.owner.hp,
-				collidedHp: collidedHero.owner.hp,
-				typesEqual: draggedHeroType === collidedHeroType,
-				hpEqual: target.owner.hp === collidedHero.owner.hp,
-				targetOwner: target.owner,
-				collidedOwner: collidedHero.owner,
-			});
-			
 			if (draggedHeroType === collidedHeroType && target.owner.hp === collidedHero.owner.hp) {
 				this.mergeHeroes(target, collidedHero);
 			} else {

@@ -87,10 +87,10 @@ export default function createScene(app) {
 		
 		// позиции героев
 		const heroPositions = [
-			[heroes[0].width / 0.5, sceneBackgroundElement.height / 4],
-			[heroes[1].width / 1.1, sceneBackgroundElement.height / 4],
-			[-heroes[2].width / 0.5, sceneBackgroundElement.height / 4],
-			[-heroes[3].width / 0.9, sceneBackgroundElement.height / 8],
+			[sceneBackgroundElement.width / 8, sceneBackgroundElement.height / 8],
+			[sceneBackgroundElement.width / 3.6, sceneBackgroundElement.height / 4],
+			[-sceneBackgroundElement.width / 38, sceneBackgroundElement.height / 5],
+			[-sceneBackgroundElement.width / 3.6, sceneBackgroundElement.height / 4],
 			[-heroes[4].width / 1.4, sceneBackgroundElement.height / 4],
 			[0, sceneBackgroundElement.height / 15],
 			[sceneBackgroundElement.width / 3.6, sceneBackgroundElement.height / 7.5],
