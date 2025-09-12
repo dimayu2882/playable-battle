@@ -17,13 +17,19 @@ export class GameManager {
 		this.scene = getUIElement(this.gameContainer, labels.scene);
 		this.heros = getUIElements(this.scene, labels.heroContainer);
 		this.enemies = getUIElements(this.scene, labels.enemyContainer);
+		this.buttonPlay = getUIElement(this.gameContainer, labels.battleButton);
 		
 		// Подписка на события EventBus
 		eventBus.on('toggleSound', this.toggleSound);
 		eventBus.on('showShadow', this.showShadow);
+		eventBus.on('battleStart', () => {
+			this.heros.forEach(hero => this.battleStart(hero, true));
+			this.enemies.forEach(enemy => this.battleStart(enemy, false));
+		});
 		
 		// Добавление обработчиков
 		this.soundButton.on('pointerdown', () => eventBus.emit('toggleSound'));
+		this.buttonPlay.on('pointerdown', () => eventBus.emit('battleStart'));
 		
 		this.heros.forEach(hero => {
 			hero
@@ -117,6 +123,48 @@ export class GameManager {
 	showShadow(hero) {
 		hero.showShadow();
 		hero.increaseLevel();
+	}
+	
+	battleStart = (character, hero) => {
+		const closestCharacter = this.findClosestCharacter(character, hero);
+		if (closestCharacter) character.owner.moveCharacter(closestCharacter);
+	}
+	
+	findClosestCharacter(character, hero) {
+		if (hero) {
+			if (!this.enemies.length) return null;
+		} else {
+			if (!this.heros.length) return null;
+		}
+		
+		let closest = null;
+		let minDist = Infinity;
+		
+		if (hero) {
+			this.enemies.forEach(enemy => {
+				const dx = enemy.x - character.x;
+				const dy = enemy.y - character.y;
+				const dist = Math.sqrt(dx * dx + dy * dy);
+				
+				if (dist < minDist) {
+					minDist = dist;
+					closest = enemy;
+				}
+			});
+		} else {
+			this.heros.forEach(hero => {
+				const dx = hero.x - character.x;
+				const dy = hero.y - character.y;
+				const dist = Math.sqrt(dx * dx + dy * dy);
+				
+				if (dist < minDist) {
+					minDist = dist;
+					closest = hero;
+				}
+			});
+		}
+		
+		return closest;
 	}
 	
 	toggleSound = () => {

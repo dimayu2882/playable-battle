@@ -30,6 +30,8 @@ export const labels = {
 	shadowMerge: 'shadowMerge',
 	heroOne: 'heroOne',
 	heroTwo: 'heroTwo',
+	heroAttack: 'heroAttack',
+	heroMove: 'heroMove',
 	
 	// UI Components
 	hpBar: 'hpBar',

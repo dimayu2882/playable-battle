@@ -1,4 +1,4 @@
-import { Assets, Rectangle } from 'pixi.js';
+import { Assets } from 'pixi.js';
 
 import { allTextureKeys } from '../common/assets.js';
 import { PixiElement } from '../utils/PixiElement.js';
@@ -27,8 +27,6 @@ export class CharacterElement extends PixiElement {
 		
 		// внутренние элементы
 		this.charterElement = null;
-		this.characterLevelTwoElement = null;
-		this.characterLevelTreeElement = null;
 		this.characterAttackElement = null;
 		this.characterMoveElement = null;
 		this.characterHpBarElement = null;
@@ -43,125 +41,132 @@ export class CharacterElement extends PixiElement {
 	}
 	
 	/** Создание базового персонажа */
+	/** Создание базового персонажа */
 	initCharacter() {
-		this.createBaseCharacter();
-		this.createUpgradedCharacters();
-		this.createHpBar();
-		if (this.isHero) this.createShadowMerge();
-		
-		this.addChildren([this.charterElement, this.characterHpBarElement]);
+		if (this.isHero) {
+			// герой: создаём idle по уровню
+			this.charterElement = this.createIdleByLevel(this.hp);
+			this.createHeroStates();
+			this.createHpBar();
+			this.createShadowMerge();
+			this.addChildren([this.charterElement, this.characterAttackElement, this.characterMoveElement, this.characterHpBarElement]);
+		} else {
+			// враг: обычный idle
+			this.charterElement = this.createAnimatedSprite({ texture: this.texture });
+			this.createEnemyStates();
+			this.createHpBar();
+			this.addChildren([this.charterElement, this.characterAttackElement, this.characterMoveElement, this.characterHpBarElement]);
+		}
 		
 		this.setElementsPosition();
 	}
 	
-	/** Базовый спрайт */
-	createBaseCharacter() {
-		const character = new PixiElement({
-			type: elementType.ANIMATED_SPRITE,
-			texture: this.texture,
-			animationSpeed: 0.6,
-			loop: true,
-			anchor: [0.5]
-		});
-		this.charterElement = character.getElement();
-		this.charterElement.play();
-		
-		if(this.isHero) {
-			this.characterAttackElement = this.createHeroAttack(allTextureKeys.minotaur1Attack, 0.2);
-			
-			if (this.texture === allTextureKeys.gunslinger1Idle) {
-				this.charterElement.scale.set(0.7);
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.gunslinger1Attack, 0.5);
-				this.characterAttackElement.scale.set(0.7);
-			}
-		} else {
-			if(this.isEnemyKing) {
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.skeletonKingAttack, 0.2);
-			} else {
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.skeletonAttack, 0.5);
-			}
-		}
-		this.addChildren([this.characterAttackElement]);
-	}
-	
-	/** Анимации для апгрейдов героя */
-	createUpgradedCharacters() {
-		if (!this.isHero) return;
-		
-		if (this.texture === allTextureKeys.gunslinger1Idle) {
-			this.characterLevelTwoElement = this.createAnimatedLevel(allTextureKeys.gunslinger2Idle, 0.7);
-			this.characterLevelTreeElement = this.createAnimatedLevel(allTextureKeys.gunslinger3Idle, 0.7);
-		}
-		
-		if (this.texture === allTextureKeys.minotaur1Idle) {
-			this.characterLevelTwoElement = this.createAnimatedLevel(allTextureKeys.minotaur2Idle);
-			this.characterLevelTwoElement.position.set(-24, -12);
-			this.characterLevelTreeElement = this.createAnimatedLevel(allTextureKeys.minotaur3Idle);
-		}
-		
-		if (this.characterLevelTwoElement && this.characterLevelTreeElement) {
-			this.addChildren([this.characterLevelTwoElement, this.characterLevelTreeElement]);
-		}
-	}
-	
-	/** Утилита для создания скрытых анимаций апгрейдов */
-	createAnimatedLevel(texture, scale = 1) {
-		const el = new PixiElement({
-			type: elementType.ANIMATED_SPRITE,
-			texture,
-			animationSpeed: 0.6,
-			loop: true,
-			anchor: [0.5],
-			visible: false,
-			scale: [scale, scale]
-		}).getElement();
-		el.play();
-		return el;
-	}
-	
-	/** Создание героя атаки */
-	createHeroAttack(texture, speed) {
+	/** Универсальный метод для AnimatedSprite */
+	createAnimatedSprite({ texture, speed = 0.6, loop = true, anchor = [0.5], visible = true, scale }) {
 		const el = new PixiElement({
 			type: elementType.ANIMATED_SPRITE,
 			texture,
 			animationSpeed: speed,
-			loop: true,
-			anchor: [0.5],
-			// scale: [0.8],
-			// visible: false,
+			loop,
+			anchor,
+			visible,
+			scale: scale ? [scale, scale] : undefined
 		}).getElement();
 		el.play();
 		return el;
+	}
+	
+	/** Создание idle в зависимости от уровня */
+	createIdleByLevel(level) {
+		const isGunslinger = this.texture === allTextureKeys.gunslinger1Idle;
+		
+		const textures = {
+			1: isGunslinger ? allTextureKeys.gunslinger1Idle : allTextureKeys.minotaur1Idle,
+			2: isGunslinger ? allTextureKeys.gunslinger2Idle : allTextureKeys.minotaur2Idle,
+			3: isGunslinger ? allTextureKeys.gunslinger3Idle : allTextureKeys.minotaur3Idle
+		};
+		
+		const scale = isGunslinger ? 0.7 : 1;
+		const el = this.createAnimatedSprite({
+			texture: textures[level],
+			scale
+		});
+		
+		// особый сдвиг для минотавра lvl2
+		if (!isGunslinger && level === 2) el.position.set(-24, -12);
+		
+		return el;
+	}
+	
+	/** Состояния героя (idle/attack/move) */
+	createHeroStates() {
+		const isGunslinger = this.texture === allTextureKeys.gunslinger1Idle;
+		
+		this.characterAttackElement = this.createCharacterState(
+			isGunslinger ? allTextureKeys.gunslinger1Attack : allTextureKeys.minotaur1Attack,
+			0.5,
+			labels.heroAttack,
+			isGunslinger ? 0.7 : 1
+		);
+		
+		this.characterMoveElement = this.createCharacterState(
+			isGunslinger ? allTextureKeys.gunslinger1Move : allTextureKeys.minotaur1Move,
+			0.2,
+			labels.heroMove,
+			isGunslinger ? 0.7 : 1
+		);
+		
+		if (isGunslinger) this.charterElement.scale.set(0.7);
+	}
+	
+	/** Состояния врагов */
+	createEnemyStates() {
+		if (this.isEnemyKing) {
+			this.characterAttackElement = this.createCharacterState(allTextureKeys.skeletonKingAttack, 0.2, labels.skeletonKing, 1.3);
+			this.characterMoveElement = this.createCharacterState(allTextureKeys.skeletonKingIdle, 0.2, labels.skeletonKing);
+		} else {
+			this.characterAttackElement = this.createCharacterState(allTextureKeys.skeletonAttack, 0.5, labels.skeleton);
+			this.characterMoveElement = this.createCharacterState(allTextureKeys.skeletonMove, 0.2, labels.skeleton);
+		}
+	}
+	
+	/** Универсальное создание атаки/движения */
+	createCharacterState(texture, speed, label, scale = 1) {
+		return this.createAnimatedSprite({
+			texture,
+			speed,
+			loop: true,
+			anchor: [0.5],
+			visible: false,
+			scale
+		});
 	}
 	
 	/** Панель HP */
 	createHpBar() {
 		this.characterHpBarElement = new PixiElement({
 			type: elementType.CONTAINER,
-			label: labels.hpBar
+			label: labels.hpBar,
+			zIndex: 9
 		}).getElement();
 		
-		// пустая полоса
 		this.characterHpEmptyElement = new PixiElement({
 			type: elementType.SPRITE,
 			texture: allTextureKeys.hpBarEmpty
 		}).getElement();
 		
-		// полная полоса
 		const hpFullTexture = this.isHero ? allTextureKeys.hpBarHero : allTextureKeys.hpBarEnemy;
 		this.characterHpFullElement = new PixiElement({
 			type: elementType.SPRITE,
 			texture: hpFullTexture
 		}).getElement();
 		
-		// иконка уровня
 		this.spriteLevel = this.getInitialLevelSprite();
 		this.characterHpElement = new PixiElement({
 			type: elementType.SPRITE,
 			texture: this.spriteLevel
 		}).getElement();
 		
-		// текст HP
 		this.characterHpTextElement = new PixiElement({
 			type: elementType.TEXT,
 			text: this.hp,
@@ -183,28 +188,24 @@ export class CharacterElement extends PixiElement {
 		);
 	}
 	
-	/** Иконка уровня по умолчанию */
 	getInitialLevelSprite() {
 		if (this.isEnemyKing) return allTextureKeys.levelThreeEnemy;
 		if (this.isHero) return allTextureKeys.levelOneHero;
 		return allTextureKeys.levelOneEnemy;
 	}
 	
-	/** Эффект слияния (для героев) */
 	createShadowMerge() {
-		this.shadowMerge = new PixiElement({
-			type: elementType.ANIMATED_SPRITE,
+		this.shadowMerge = this.createAnimatedSprite({
 			texture: allTextureKeys.mergeExplosionJSON,
-			label: labels.shadowMerge,
-			animationSpeed: 0.6,
-			anchor: [0.5],
-			visible: false
-		}).getElement();
+			speed: 0.6,
+			visible: false,
+			anchor: [0.5]
+		});
+		this.shadowMerge.label = labels.shadowMerge;
 		
 		this.addChildren([this.shadowMerge]);
 	}
 	
-	/** Запуск анимации слияния */
 	showShadow = () => {
 		if (!this.shadowMerge) return;
 		this.shadowMerge.visible = true;
@@ -220,50 +221,79 @@ export class CharacterElement extends PixiElement {
 		this.hp++;
 		this.characterHpTextElement.text = this.hp;
 		
-		// Удаляем старую анимацию атаки, если она есть
-		if (this.characterAttackElement) {
-			this.characterAttackElement.destroy();
-		}
+		// Удаляем старые idle/attack/move
+		if (this.charterElement) this.charterElement.destroy();
+		if (this.characterAttackElement) this.characterAttackElement.destroy();
+		if (this.characterMoveElement) this.characterMoveElement.destroy();
 		
+		// Создаём новые idle/attack/move для уровня hp
+		this.charterElement = this.createIdleByLevel(this.hp);
+		
+		const isGunslinger = this.texture === allTextureKeys.gunslinger1Idle;
 		if (this.hp === 2) {
 			this.characterHpBarElement.scale.set(0.45);
 			this.spriteLevel = allTextureKeys.levelTwoHero;
-			this.switchCharacterLevel(this.charterElement, this.characterLevelTwoElement);
-			
-			if (this.texture === allTextureKeys.minotaur1Idle) {
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.minotaur2Attack, 0.5);
-			} else {
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.gunslinger2Attack, 0.5);
-			}
-			this.addChildren([this.characterAttackElement]);
-		}
-		
-		if (this.hp === 3) {
+		} else if (this.hp === 3) {
 			this.characterHpBarElement.scale.set(0.5);
 			this.spriteLevel = allTextureKeys.levelThreeHero;
-			this.switchCharacterLevel(this.characterLevelTwoElement, this.characterLevelTreeElement);
-			
-			if (this.texture === allTextureKeys.minotaur1Idle) {
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.minotaur3Attack, 0.5);
-			} else {
-				this.characterAttackElement = this.createHeroAttack(allTextureKeys.gunslinger3Attack, 0.5);
-			}
-			this.addChildren([this.characterAttackElement]);
 		}
 		
+		this.characterAttackElement = this.createCharacterState(
+			isGunslinger
+				? (this.hp === 2 ? allTextureKeys.gunslinger2Attack : allTextureKeys.gunslinger3Attack)
+				: (this.hp === 2 ? allTextureKeys.minotaur2Attack : allTextureKeys.minotaur3Attack),
+			0.5,
+			labels.heroAttack,
+			isGunslinger ? 0.85 : 1
+		);
+		
+		this.characterMoveElement = this.createCharacterState(
+			isGunslinger
+				? (this.hp === 2 ? allTextureKeys.gunslinger2Move : allTextureKeys.gunslinger3Move)
+				: (this.hp === 2 ? allTextureKeys.minotaur2Move : allTextureKeys.minotaur3Move),
+			0.2,
+			labels.heroMove,
+			isGunslinger ? 0.85 : 1
+		);
+		
+		this.addChildren([this.charterElement, this.characterAttackElement, this.characterMoveElement]);
 		this.characterHpElement.texture = Assets.cache.get(this.spriteLevel);
 	};
 	
-	/** Переключение спрайтов уровня */
-	switchCharacterLevel(hideElement, showElement) {
-		if (hideElement) hideElement.visible = false;
-		if (showElement) {
-			showElement.visible = true;
-			showElement.play();
-		}
+	moveCharacter(target, speed = 2) {
+		this.charterElement.visible = false;
+		this.characterMoveElement.visible = true;
+		
+		const ticker = this.app.ticker;
+		
+		const update = () => {
+			if (!target.visible) {
+				ticker.remove(update);
+				return;
+			}
+			
+			const dx = target.x - this.getElement().x;
+			const dy = target.y - this.getElement().y;
+			const dist = Math.sqrt(dx * dx + dy * dy);
+			
+			if (dist < 80) {
+				// дошёл до врага
+				this.characterMoveElement.visible = false;
+				this.characterAttackElement.visible = true;
+				ticker.remove(update);
+				return;
+			}
+			
+			const vx = (dx / dist) * speed;
+			const vy = (dy / dist) * speed;
+			
+			this.getElement().x += vx;
+			this.getElement().y += vy;
+		};
+		
+		ticker.add(update);
 	}
 	
-	/** Позиции элементов */
 	setElementsPosition = () => {
 		const barScale = { 1: 0.35, 2: 0.4, 3: 0.5 }[this.hp] || 0.35;
 		this.characterHpBarElement.scale.set(barScale);
@@ -274,7 +304,7 @@ export class CharacterElement extends PixiElement {
 		);
 		this.characterHpBarElement.position.set(
 			this.charterElement.x,
-			this.charterElement.y - this.charterElement.height / 2.5
+			this.charterElement.y - this.charterElement.height / 2
 		);
 		
 		this.characterHpElement.anchor.set(0.5);
