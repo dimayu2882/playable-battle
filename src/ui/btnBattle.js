@@ -13,7 +13,8 @@ export default function createButtonBattle(app) {
 		buttonMode: true,
 		cursor: 'pointer',
 		anchor: [0.5],
-		scale: [0.5]
+		scale: [0.5],
+		visible: false
 	}, onResizeHandler, true);
 	const buttonBattleElement = buttonBattle.getElement();
 	

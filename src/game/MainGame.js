@@ -55,8 +55,8 @@ export class MainGame {
 			createBtnTop(app),
 			createLogo(app),
 			createTextButton(app),
+			createButtonBattle(app),
 			createSceneFinish(app),
-			createButtonBattle(app)
 		);
 
 		this.gameManager = new GameManager(app);

@@ -12,6 +12,7 @@ export const labels = {
 	logo: 'logo',
 	textButton: 'textButton',
 	playButton: 'playButton',
+	buttonRetry: 'buttonRetry',
 	battleButton: 'battleButton',
 	
 	// Characters
@@ -32,18 +33,20 @@ export const labels = {
 	heroTwo: 'heroTwo',
 	heroAttack: 'heroAttack',
 	heroMove: 'heroMove',
+	explosion: 'explosion',
 	
 	// UI Components
 	hpBar: 'hpBar',
 	hpBarEnemy: 'hpBarEnemy',
 	
-	// Game States
 	gameOver: 'gameOver',
 	gameWin: 'gameWin',
 	gameStart: 'gameStart',
 	levelOne: 'levelOne',
 	levelTwo: 'levelTwo',
 	levelThree: 'levelThree',
+	finishLost: 'finishLost',
+	finishWin: 'finishWin',
 };
 
 export const elementType = {

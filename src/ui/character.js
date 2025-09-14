@@ -24,8 +24,8 @@ export class CharacterElement extends PixiElement {
 		this.isHero = isHero;
 		this.isEnemyKing = isEnemyKing;
 		this.heroType = heroType;
-		this.hp = hp;
 		this.level = hp;
+		this.hp = hp;
 		
 		// внутренние элементы
 		this.charterElement = null;
@@ -38,6 +38,7 @@ export class CharacterElement extends PixiElement {
 		this.characterHpTextElement = null;
 		this.shadowMerge = null;
 		this.spriteLevel = null;
+		this.attackExplosion = null;
 		
 		this.initCharacter();
 	}
@@ -46,16 +47,30 @@ export class CharacterElement extends PixiElement {
 	initCharacter() {
 		if (this.isHero) {
 			// герой: создаём idle по уровню
-			this.charterElement = this.createIdleByLevel(this.level);
+			this.charterElement = this.createIdleByLevel(this.hp);
 			this.createHeroStates();
 			this.createHpBar();
 			this.createShadowMerge();
-			this.addChildren([this.charterElement, this.characterAttackElement, this.characterMoveElement, this.characterHpBarElement]);
+			this.creatAttackExplosion(allTextureKeys.attackExplosionJSON);
+			this.addChildren([
+				this.charterElement,
+				this.characterAttackElement,
+				this.characterMoveElement,
+				this.characterHpBarElement,
+				this.attackExplosion
+			]);
 		} else {
 			this.charterElement = this.createAnimatedSprite({ texture: this.texture });
 			this.createEnemyStates();
 			this.createHpBar();
-			this.addChildren([this.charterElement, this.characterAttackElement, this.characterMoveElement, this.characterHpBarElement]);
+			this.creatAttackExplosion(allTextureKeys.mergeExplosionJSON);
+			this.addChildren([
+				this.charterElement,
+				this.characterAttackElement,
+				this.characterMoveElement,
+				this.characterHpBarElement,
+				this.attackExplosion
+			]);
 		}
 		
 		this.setElementsPosition();
@@ -77,7 +92,7 @@ export class CharacterElement extends PixiElement {
 	}
 	
 	/** Создание idle в зависимости от уровня */
-	createIdleByLevel(level) {
+	createIdleByLevel(hp) {
 		const isGunslinger = this.texture === allTextureKeys.gunslinger1Idle;
 		
 		const textures = {
@@ -88,12 +103,12 @@ export class CharacterElement extends PixiElement {
 		
 		const scale = isGunslinger ? 0.7 : 1;
 		const el = this.createAnimatedSprite({
-			texture: textures[level],
+			texture: textures[hp],
 			scale
 		});
 		
 		// особый сдвиг для минотавра lvl2
-		if (!isGunslinger && level === 2) el.position.set(-24, -12);
+		if (!isGunslinger && hp === 2) el.position.set(-24, -12);
 		
 		return el;
 	}
@@ -169,7 +184,7 @@ export class CharacterElement extends PixiElement {
 		
 		this.characterHpTextElement = new PixiElement({
 			type: elementType.TEXT,
-			text: this.level,
+			text: this.hp,
 			style: {
 				fontSize: 30,
 				fontStyle: 'bold',
@@ -206,6 +221,17 @@ export class CharacterElement extends PixiElement {
 		this.addChildren([this.shadowMerge]);
 	}
 	
+	creatAttackExplosion(texture) {
+		this.attackExplosion = this.createAnimatedSprite({
+			texture: texture,
+			label: labels.explosion,
+			speed: 0.8,
+			anchor: [0.5],
+			scale: 0.4,
+			visible: false,
+		})
+	}
+	
 	showShadow = () => {
 		if (!this.shadowMerge) return;
 		this.shadowMerge.visible = true;
@@ -216,33 +242,37 @@ export class CharacterElement extends PixiElement {
 		this.shadowMerge.onComplete = () => (this.shadowMerge.visible = false);
 	};
 	
+	highlightInvalid(on = true) {
+		this.charterElement.tint = on ? 0xff4444 : 0xffffff;
+	}
+	
 	/** Повышение уровня героя */
 	increaseLevel = () => {
-		this.hp += 2;
 		this.level += 2;
-		this.characterHpTextElement.text = this.level;
+		this.hp += 2;
+		this.characterHpTextElement.text = this.hp;
 		
 		// Удаляем старые idle/attack/move
 		if (this.charterElement) this.charterElement.destroy();
 		if (this.characterAttackElement) this.characterAttackElement.destroy();
 		if (this.characterMoveElement) this.characterMoveElement.destroy();
 		
-		// Создаём новые idle/attack/move для уровня hp
-		this.charterElement = this.createIdleByLevel(this.level);
+		// Создаём новые idle/attack/move для уровня
+		this.charterElement = this.createIdleByLevel(this.hp);
 		
 		const isGunslinger = this.texture === allTextureKeys.gunslinger1Idle;
-		if (this.level === 3) {
+		if (this.hp === 3) {
 			this.characterHpBarElement.scale.set(0.45);
 			this.spriteLevel = allTextureKeys.levelTwoHero;
-		} else if (this.level === 5) {
+		} else if (this.hp === 5) {
 			this.characterHpBarElement.scale.set(0.5);
 			this.spriteLevel = allTextureKeys.levelThreeHero;
 		}
 		
 		this.characterAttackElement = this.createCharacterState(
 			isGunslinger
-				? (this.level === 3 ? allTextureKeys.gunslinger2Attack : allTextureKeys.gunslinger3Attack)
-				: (this.level === 3 ? allTextureKeys.minotaur2Attack : allTextureKeys.minotaur3Attack),
+				? (this.hp === 3 ? allTextureKeys.gunslinger2Attack : allTextureKeys.gunslinger3Attack)
+				: (this.hp === 3 ? allTextureKeys.minotaur2Attack : allTextureKeys.minotaur3Attack),
 			0.5,
 			labels.heroAttack,
 			isGunslinger ? 0.85 : 1
@@ -250,8 +280,8 @@ export class CharacterElement extends PixiElement {
 		
 		this.characterMoveElement = this.createCharacterState(
 			isGunslinger
-				? (this.level === 3 ? allTextureKeys.gunslinger2Move : allTextureKeys.gunslinger3Move)
-				: (this.level === 3 ? allTextureKeys.minotaur2Move : allTextureKeys.minotaur3Move),
+				? (this.hp === 3 ? allTextureKeys.gunslinger2Move : allTextureKeys.gunslinger3Move)
+				: (this.hp === 3 ? allTextureKeys.minotaur2Move : allTextureKeys.minotaur3Move),
 			0.2,
 			labels.heroMove,
 			isGunslinger ? 0.85 : 1
@@ -303,70 +333,94 @@ export class CharacterElement extends PixiElement {
 		
 		// если у атакующего уже есть активный цикл — не запускать второй
 		if (this.attackInterval) return;
+		this.attackExplosion.visible = true;
 		
 		this.attackInterval = setInterval(() => {
 			// урон равен hp атакующего
 			targetOwner.takeDamage(this.hp);
 			
 			// если цель умерла — прекратить атаку
-			if (targetOwner.level <= 0) {
+			if (targetOwner.hp <= 0) {
 				clearInterval(this.attackInterval);
 				this.attackInterval = null;
 				this.characterAttackElement.visible = false;
 				this.charterElement.visible = true;
+				this.attackExplosion.visible = false;
 				eventBus.emit('battleStart');
 			}
 		}, 2000);
 	}
 	
 	takeDamage(amount) {
-		if (this.isHero) {
-			console.log(this.level, this.heroType);
+		if (!this.getElement()) return;
+		
+		this.hp -= amount;
+		if (this.hp < 0) this.hp = 0;
+		
+		// проверяем HP элементы
+		if (this.characterHpEmptyElement?.width && this.characterHpFullElement) {
+			const maxHpWidth = this.characterHpEmptyElement.width;
+			this.characterHpFullElement.width = (this.hp / 3) * maxHpWidth;
 		}
-		this.level -= amount;
-		if (this.level < 0) this.level = 0;
 		
-		// визуально обновить HP bar
-		const maxHpWidth = this.characterHpEmptyElement.width;
-		this.characterHpFullElement.width = (this.level / 3) * maxHpWidth;
+		// Обновляем текст HP
+		if (this.characterHpTextElement) {
+			this.characterHpTextElement.text = this.hp;
+		}
 		
-		if (this.level <= 0) {
-			this.die();
+		// проверяем элементы персонажа
+		if (this.hp <= 0 && this.getElement()) {
+			this.app.ticker.addOnce(() => this.die());
 		}
 	}
 	
 	die() {
-		this.getElement().visible = false;
-		if (this.attackInterval) clearInterval(this.attackInterval);
+		if (!this.getElement()) return;
 		
-		// убрать из массива героев/врагов (лучше через GameManager)
+		if (this.attackInterval) {
+			clearInterval(this.attackInterval);
+			this.attackInterval = null;
+		}
+		
+		if (this.characterMoveElement) this.characterMoveElement.visible = false;
+		if (this.characterAttackElement) this.characterAttackElement.visible = false;
+		if (this.charterElement) this.charterElement.visible = false;
+		
+		this.getElement().visible = false;
 		eventBus.emit('characterDied', this);
 	}
 	
 	setElementsPosition = () => {
-		const barScale = { 1: 0.35, 2: 0.4, 3: 0.5 }[this.level] || 0.35;
-		this.characterHpBarElement.scale.set(barScale);
+		if (!this.charterElement) return; // нет персонажа — не обновляем
 		
-		this.characterHpBarElement.pivot.set(
-			this.characterHpBarElement.width / 2 + 20,
-			this.characterHpBarElement.height / 2
-		);
-		this.characterHpBarElement.position.set(
-			this.charterElement.x,
-			this.charterElement.y - this.charterElement.height / 2
-		);
+		const barScale = { 1: 0.35, 2: 0.4, 3: 0.5 }[this.hp] || 0.35;
+		if (this.characterHpBarElement) {
+			this.characterHpBarElement.scale.set(barScale);
+			this.characterHpBarElement.pivot.set(
+				this.characterHpBarElement.width / 2 + 20,
+				this.characterHpBarElement.height / 2
+			);
+			this.characterHpBarElement.position.set(
+				this.charterElement.x,
+				this.charterElement.y - this.charterElement.height / 2
+			);
+		}
 		
-		this.characterHpElement.anchor.set(0.5);
-		this.characterHpElement.position.set(
-			this.characterHpElement.x / 2 - this.characterHpElement.width / 4,
-			8
-		);
+		if (this.characterHpElement) {
+			this.characterHpElement.anchor.set(0.5);
+			this.characterHpElement.position.set(
+				this.characterHpElement.x / 2 - this.characterHpElement.width / 4,
+				8
+			);
+		}
 		
-		this.characterHpTextElement.anchor.set(0.5);
-		this.characterHpTextElement.position.set(
-			this.characterHpElement.x,
-			this.characterHpElement.y
-		);
+		if (this.characterHpTextElement) {
+			this.characterHpTextElement.anchor.set(0.5);
+			this.characterHpTextElement.position.set(
+				this.characterHpElement?.x || 0,
+				this.characterHpElement?.y || 0
+			);
+		}
 	};
 	
 	onResizeHandler() {
